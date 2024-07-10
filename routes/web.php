@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\FollowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +25,10 @@ Route::get('/', [PostController::class, 'index'])->name('posts.index');
 Route::get('posts.edit_index', [PostController::class, 'editIndex'])->name('posts.edit_index');
 
 Route::resource('posts', PostController::class);
+
+Route::resource('users', UserController::class)->only(['show',]);  
+
+Route::resource('follows', FollowController::class)->only([
+  'index', 'store', 'destroy'
+]);
+Route::get('/follower', [FollowController::class, 'followerIndex']);

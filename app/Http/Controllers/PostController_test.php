@@ -23,15 +23,44 @@ class PostController extends Controller
         // フォローしている人
         $follow_user_ids = $user->follow_users->pluck('id');
         // フォローしていない人
-        $unfollows = User::whereNotIn('id', $follow_user_ids)
-                           ->where('id' , '!=' , $user->id)
-                           ->latest()->limit(3)->get();
-
+        // $unfollows = User::where('id' , '!=', $follow_user_ids)->latest()->limit(3);
+        // $unfollows = User::whereNotIn('id' , $follow_user_ids)->latest()->limit(3);
+        $unfollows = User::whereNotIn('id', $follow_user_ids)->latest()->limit(3);
+        // dd($follow_user_ids);
+        // dd(User::whereNotIn('id', $follow_user_ids)->toSql());
         $posts = $user->posts()->orWhereIn('user_id', $follow_user_ids )->latest()->get();
         return view ('posts.index', [
             'title' => '投稿一覧',
             'posts' => $posts,
-            'unfollows' => $unfollows,
+            'recommended_users' => User::recommend($user->id)->get(),
+            'unfollows' => $unfollows
+        ]);
+    }
+    
+    public function index_t()
+    {
+        $user = \Auth::user();
+        // フォローしている人
+        $follow_user_ids = $user->follow_users->pluck('id');
+        // フォローしていない人
+        // $unfollows = User::where('id' , '!=', $follow_user_ids)->latest()->limit(3);
+        // $unfollows = User::whereNotIn('id' , $follow_user_ids)->latest()->limit(3);
+        // $unfollows = User::whereNotIn('id', $follow_user_ids)->latest()->limit(3);
+
+        // $unfollows = User::latest()->get();
+        $unfollows = User::whereNotIn('id', $follow_user_ids)->latest()->limit(2)->get();
+        // $unfollows = User::whereNotIn('id', $follow_user_ids)->latest()->get();
+        // dd(User::whereNotIn('id', $follow_user_ids)->latest()->limit(2)->toSql());
+        // dd($unfollows);
+
+        // dd($follow_user_ids);
+        // dd(User::whereNotIn('id', $follow_user_ids)->toSql());
+        $posts = $user->posts()->orWhereIn('user_id', $follow_user_ids )->latest()->get();
+        return view ('posts.index', [
+            'title' => '投稿一覧',
+            'posts' => $posts,
+            'recommended_users' => User::recommend($user->id)->get(),
+            'unfollows' => $unfollows
         ]);
     }
 

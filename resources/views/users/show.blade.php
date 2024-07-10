@@ -3,27 +3,35 @@
 @section('title', $title)
  
 @section('content')
-    
-  <div class="main_content">
-    
-    <h1 class="main_title">{{ $title }}</h1>
-    <div class="main_top">
+  <h1>{{ $title }}</h1>
+  
+  <ul>
+      <li>ユーザー名</li>
+      <li>{{ $user->name }}</li>
       
-    <p class="greeting">{{ Auth::user()->name }}さん、こんにちは！</p>
-    <h2>おすすめユーザー</h2>
-    <ul class="unfollows">
-      @forelse($unfollows as $unfollow)
-        <li><a href="{{ route('users.show', $unfollow) }}">{{ $unfollow->name }}</a></li>
-      @empty
-        <li>他のユーザーが存在しません</li>
-      @endforelse
-    
-    </ul>
-    </div>
-    <h3 class="new_post_btn"><a href="{{ route('posts.create') }}">新規投稿</a></h2>
-    
-    <div class="main_body">
-      <ul>
+      <!--自分の画面にはボタンを表示させない-->
+      <li>
+        @if($user->id !== Auth::user()->id)
+        @if(Auth::user()->isFollowing($user))
+          <form method="post" action="{{ secure_url(route('follows.destroy', $user))}}" class="follow">
+            @csrf
+            @method('delete')
+            <input type="submit" value="フォロー解除">
+          </form>
+        @else
+          <form method="post" action="{{ route('follows.store') }}" class="follow">
+            @csrf
+            <input type="hidden" name="follow_id" value="{{ $user->id }}">
+            <input type="submit" value="フォロー">
+          </form>
+        @endif
+        @endif
+      </li>
+  </ul>
+  
+  <ul>
+      <li>ユーザーの投稿</li>
+      <div class="main_body">
         @forelse($posts as $post)
           <li class="post_body">
             <div>
@@ -54,10 +62,7 @@
           <p class="none_post">投稿がありません</p>
           </li>
         @endforelse
-      </ul>
-    </div>
-  </div>
+  </ul>
 
 
-  
 @endsection

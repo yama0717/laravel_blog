@@ -47,4 +47,28 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany(Post::class);
     }
+    
+    public function follows(){
+        return $this->hasMany(Follow::class);
+    }
+    
+    public function follow_users(){
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'follow_id');
+    }
+    
+    public function followers(){
+        return $this->belongsToMany(User::class, 'follows', 'follow_id', 'user_id');
+    }
+    
+    // おすすめユーザー
+    public function scopeRecommend($query, $self_id){
+        // return $query->where('id', '!=', $self_id)->latest()->limit(3);
+        return $query->where('id' , '!=' , $self_id)->inRandomOrder()->limit(3);
+    }
+    
+    // フォロー確認
+    public function isFollowing($user){
+        $result = $this->follow_users->pluck('id')->contains($user->id);
+        return $result;
+    }
 }

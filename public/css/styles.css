@@ -1,29 +1,27 @@
 
-body {
-  width: 1100px;
-}
-
 header {
   font-size: 24px;
   display: flex;
   list-style: none;
-  margin: 15px 20px;
+  margin: 15px auto;
   padding-left: 0;
-}
-.header {
+  width: 1100px;
   border-bottom: solid 2px red;
 }
+
+.main_content, .create, .register, .login {
+  width: 1100px;
+  margin: 15px auto;
+}
+/*.header {*/
+/*  border-bottom: solid 2px red;*/
+/*}*/
 .login_header {
   display: flex;
-  border-bottom: solid 2px red;
 }
 .sign_up {
+  width: 1100px;
   display: flex;
-}
-.login_title {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 15px 140px;
 }
 .header_nav {
   display: flex;
@@ -31,8 +29,8 @@ header {
   
 }
 .header_btn {
-  margin-left: 160px;
-  margin-right: 10px;
+/*  margin-left: 160px;*/
+/*  margin-right: 10px;*/
 }
 .header_title {
   display: flex;
@@ -41,8 +39,6 @@ header {
 }
 .header_left {
   display: flex;
-  margin-left: 170px;
-  margin-right: 30px;
   gap: 30px;
 }
 .header_right {
@@ -52,7 +48,7 @@ header {
   gap: 30px;
 }
 .register_menu, .login_menu {
-  margin-left: 283px;
+  margin-left: 80px;
 }
 .register_form, .login_form {
   margin-top: 5px;
@@ -60,18 +56,14 @@ header {
   border-radius : 5%;
   border: 2px solid #DDDDDD;
 }
-.login_h1 {
+.login_h1, .register_h1 {
   font-size:24px;
-  margin-left: 283px;
+  margin-left: 80px;
 }
-.register_h1 {
-  font-size:24px;
-  margin-left: 283px;
-}
+
 .create_title, .edit_title {
   font-size: 24px;
-  margin-left: 190px;
-
+  margin-left: 151px;
 }
 .login_btn, .register_btn {
   display       : inline-block;
@@ -93,12 +85,12 @@ header {
 
 /* エラーメッセージ用のスタイル */
 .error {
-  margin-left: 42px;
+  margin-left: 193px;
   color: red;
 }
 /* 成功メッセージ用のスタイル */
 .success {
-  margin-left: 42px;
+  margin-left: 193px;
   color: green;
 }
 /*a要素*/
@@ -113,18 +105,30 @@ a:visited {
 a:active {
  color: #FF0000;
 }
-
+.main_top {
+  padding-left: 151px;
+}
+.greeting {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.unfollows {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-top: 5px;
+  
+}
 .main_title {
   font-size: 24px;
-  padding-left: 190px;
+  padding-left: 151px;
 }
 .new_post_btn {
   font-size: 20px;
   border: #949593 solid 2px;
   border-radius: 5px;
   margin-top: 10px;
-  margin-left: 190px;
-  margin-right: 824px;
+  margin-left: 154px;
+  margin-right: 860px;
   padding-top: 2px;
 }
 .new_post_btn:hover {
@@ -133,8 +137,8 @@ a:active {
   border-radius: 5px;
 }
 .post_body {
-  width: 800px;
-  margin: 30px 190px;
+  width: 664px;
+  margin: 30px 154px;
   border: #949593 solid 2px;
 }
 .post_body_top {
@@ -143,8 +147,8 @@ a:active {
   margin-left: 5px;
 }
 .none_post {
-  margin-top: 10px;
-  margin-left: 190px;
+  margin-top: 15px;
+  margin-left: 158px;
 }
 .post_menu {
   display: flex;
@@ -194,7 +198,7 @@ a:active {
 }
 .create_form, .edit_form {
   font-size: 20px;
-  margin-left: 190px;
+  margin-left: 151px;
 }
 .title_form {
   border: #DDDDDD solid 2px;
@@ -210,4 +214,10 @@ a:active {
 }
 textarea {
   border: 2px solid #DDDDDD;
+}
+
+.follow {
+  cursor: pointer;
+  width: 100px;
+  border: 1px solid #000;
 }
