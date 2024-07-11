@@ -9,6 +9,14 @@
     <h1 class="main_title">{{ $title }}</h1>
     <div class="main_top">
       
+      <div class="keyword">
+        <form action="{{ route('posts.index') }}" method="get">
+          @csrf
+          <input type="text" name="keyword" value="{{$keyword}}" class="keyword_form">
+          <input type="submit"value="検索" class="keyword_btn">
+        </form>
+      </div>
+      
     <p class="greeting">{{ Auth::user()->name }}さん、こんにちは！</p>
     <h2>おすすめユーザー</h2>
     <ul class="unfollows">
