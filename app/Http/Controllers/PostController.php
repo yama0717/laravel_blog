@@ -17,7 +17,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = \Auth::user();
         // フォローしている人
@@ -27,11 +27,26 @@ class PostController extends Controller
                            ->where('id' , '!=' , $user->id)
                            ->latest()->limit(3)->get();
 
-        $posts = $user->posts()->orWhereIn('user_id', $follow_user_ids )->latest()->get();
+
+
+        // 検索
+        if (isset($request->keyword)) {
+            $posts = Post::
+                where('user_id', '!=', \Auth::user()->id)
+                ->whereany([
+                    'title',
+                    'body',
+                ], 'LIKE','%' . $request->keyword . '%')
+                ->latest()->get();
+
+         } else {
+            $posts = $user->posts()->orWhereIn('user_id', $follow_user_ids )->latest()->get();
+         }
         return view ('posts.index', [
             'title' => '投稿一覧',
             'posts' => $posts,
             'unfollows' => $unfollows,
+            'keyword' => $request->keyword
         ]);
     }
 
