@@ -59,7 +59,7 @@
                 </div>
                 @endif
               <div class="post_footer">
-                {{ $post->body }}
+                {!! nl2br(e($post->body)) !!}
               </div>
             @empty
               <p class="none_post">投稿がありません</p>

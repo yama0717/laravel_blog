@@ -17,7 +17,7 @@
         </form>
       </div>
       
-    <p class="greeting">{{ Auth::user()->name }}さん、こんにちは！</p>
+    <p class="greeting"><a href="{{ route('users.show', $user) }}">{{ Auth::user()->name }}さん、こんにちは！</a></p>
     <h2>おすすめユーザー</h2>
     <ul class="unfollows">
       @forelse($unfollows as $unfollow)
@@ -27,6 +27,8 @@
       @endforelse
     
     </ul>
+    
+    
     </div>
     <h3 class="new_post_btn"><a href="{{ route('posts.create') }}">新規投稿</a></h2>
     
@@ -56,7 +58,7 @@
             </div>
             @endif
           <div class="post_footer">
-            {{ $post->body }}
+            {!! nl2br(e($post->body)) !!}
           </div>
         @empty
           <p class="none_post">投稿がありません</p>

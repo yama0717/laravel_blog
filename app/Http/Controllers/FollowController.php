@@ -31,9 +31,21 @@ class FollowController extends Controller
         ]);
         
         \Session::flash('success', 'フォローしました');
-        // return redirect()->route('users.show', $id);
         return back();
     }
+
+    
+    //   public function store($id)
+    // {
+    //     $user = \Auth::user();
+    //     Follow::create([
+    //         'user_id' => $user->id,
+    //         'follow_id' => $id->follow_id,
+    //     ]);
+        
+    //     \Session::flash('success', 'フォローしました');
+    //     return redirect()->route('users.show', $id);
+    // }
 
     /**
      * Display the specified resource.

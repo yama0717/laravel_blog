@@ -19,12 +19,6 @@
             新規投稿
           </a>
         </li>
-        <li>
-          <a href="{{ route('posts.edit_index') }}">
-            投稿編集
-          </a>
-        </li>
-        <li>
           <div class="logout_btn">
             <form action="{{ route('logout') }}" method="post">
               @csrf

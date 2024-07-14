@@ -6,13 +6,18 @@
     
     <form method="post" action="{{ route('login') }}" class="login_menu">
         @csrf
+        <!--<div>-->
+        <!--    <label>-->
+        <!--        メールアドレス:-->
+        <!--        <input type="email" name="email" class="login_form">-->
+        <!--    </label>-->
+        <!--</div>-->
         <div>
             <label>
-                メールアドレス:
-                <input type="email" name="email" class="login_form">
+                ユーザー名:
+                <input type="text" name="name" class="login_form">
             </label>
         </div>
-        
         <div>
             <label>
                 パスワード:
