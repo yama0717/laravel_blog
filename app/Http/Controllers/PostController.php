@@ -44,9 +44,10 @@ class PostController extends Controller
          }
         return view ('posts.index', [
             'title' => '投稿一覧',
+            'user' => $user,
             'posts' => $posts,
             'unfollows' => $unfollows,
-            'keyword' => $request->keyword
+            'keyword' => $request->keyword,
         ]);
     }
 
