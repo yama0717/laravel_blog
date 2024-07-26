@@ -3,20 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Follow;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FollowController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        $follow_users = \Auth::user()->follow_users;
-        
+        // 新着順
+        $follow_users = \Auth::user()->follow_users()->latest()->get();
+        $count = \Auth::user()->follow_users()->count();
         return view('follows.index', [
             'title' => 'フォロー一覧',
             'follow_users' => $follow_users,
+            'count' => $count,
         ]);
     }
 
@@ -34,7 +38,7 @@ class FollowController extends Controller
         return back();
     }
 
-    
+    //もう一度説明してもらう
     //   public function store($id)
     // {
     //     $user = \Auth::user();
@@ -47,14 +51,6 @@ class FollowController extends Controller
     //     return redirect()->route('users.show', $id);
     // }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
 
     public function destroy(string $id)
     {
@@ -64,10 +60,15 @@ class FollowController extends Controller
         return redirect()->route('users.show', $id);
     }
     
-    public function follwerIndex()
+    public function followerIndex()
     {
-    return view('follows.follower_index', [
-      'title' => 'フォロワー一覧',
+        $followers = \Auth::user()->followers()->latest()->get();
+        $count = \Auth::user()->followers()->count();
+        return view('follows.follower_index', [
+          'title' => 'フォロワー一覧',
+          'followers' => $followers,
+          'count' => $count
+          
     ]);
     }
 }

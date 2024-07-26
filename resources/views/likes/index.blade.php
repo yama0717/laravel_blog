@@ -1,40 +1,15 @@
 @extends('layouts.logged_in')
- 
+
 @section('title', $title)
- 
+
 @section('content')
-    
   <div class="main_content">
-    
-    <h1 class="main_title">{{ $title }}</h1>
-    <div class="main_top">
-      
-      <div class="keyword">
-        <form action="{{ route('posts.index') }}" method="get">
-          @csrf
-          <input type="text" name="keyword" value="{{$keyword}}" class="keyword_form" placeholder="投稿を検索" >
-          <input type="submit"value="検索" class="keyword_btn">
-        </form>
-      </div>
-      
-    <p class="greeting"><a href="{{ route('users.show', $user) }}">{{ Auth::user()->name }}さん、こんにちは！</a></p>
-    <h2 class="greeting">おすすめユーザー</h2>
-    <ul class="unfollows">
-      @forelse($unfollows as $unfollow)
-        <li><a href="{{ route('users.show', $unfollow) }}">{{ $unfollow->name }}</a></li>
-      @empty
-        <li>他のユーザーが存在しません</li>
-      @endforelse
-    
-    </ul>
-    
-    
-    </div>
-    <h3 class="new_post_btn"><a href="{{ route('posts.create') }}">新規投稿</a></h2>
-    
     <div class="main_body">
+      
+    <h1 class="like_title">{{ $title }}</h1>
+  
       <ul>
-        @forelse($posts as $post)
+        @forelse($like_posts as $post)
           <li class="post_body">
             <div>
               <div class="post_body_top">
@@ -68,7 +43,7 @@
                   <form method="post" class="delete" action="{{ route('posts.destroy', $post) }}">
                     @csrf
                     @method('delete')
-                    <input type="submit" value="削除">
+                    <input type="submit" value="削除" class="de"delete_btn>
                   </form>
                 </div>
               </div>
@@ -95,7 +70,7 @@
                     <form method="post" action="{{ route('comments.destroy', $comment) }}">
                       @csrf
                       @method('delete')
-                      <input type="submit" value="削除">
+                      <input type="submit" value="削除" class="delete_btn">
                     </form>
                   @endif
                 </li>
@@ -112,13 +87,10 @@
             </form>
           </div>
         @empty
-          <p class="none_post">投稿がありません</p>
+          <p class="none_post">いいねがありません</p>
           </li>
         @endforelse
       </ul>
     </div>
   </div>
-
-
-  
 @endsection

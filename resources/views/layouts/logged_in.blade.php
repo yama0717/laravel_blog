@@ -19,6 +19,26 @@
             新規投稿
           </a>
         </li>
+        <li>
+          <a href="{{ route('follows.index') }}">
+            フォロー
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('follows.follower_index') }}">
+            フォロワー
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('users.show', \Auth::user()->id) }}">
+            マイページ
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('likes.index') }}">
+            いいね
+          </a>
+        </li>
           <div class="logout_btn">
             <form action="{{ route('logout') }}" method="post">
               @csrf

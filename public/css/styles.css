@@ -85,12 +85,14 @@ header {
 
 /* エラーメッセージ用のスタイル */
 .error {
-  margin-left: 193px;
+  width: 1100px;
+  margin: 0 auto;
   color: red;
 }
 /* 成功メッセージ用のスタイル */
 .success {
-  margin-left: 193px;
+  width: 1100px;
+  margin: 0 auto;
   color: green;
 }
 /*a要素*/
@@ -114,15 +116,16 @@ a:active {
 }
 .greeting {
   margin-top: 10px;
+  margin-left: 5px;
   margin-bottom: 5px;
 }
 .unfollows {
   list-style-type: disc;
-  margin-left: 20px;
+  margin-left: 24px;
   margin-top: 5px;
   
 }
-.main_title, .show_title {
+.main_title, .show_title, .follow_title, .follower_title, .like_title{
   font-size: 24px;
   padding-left: 151px;
 }
@@ -148,7 +151,8 @@ a:active {
 .post_body_top {
   display: flex;
   font-size: 20px;
-  margin-left: 5px;
+  padding-left: 5px;
+  background-color: #b3b3b3;
 }
 .none_post {
   margin-top: 15px;
@@ -166,6 +170,8 @@ a:active {
   padding-left: 2px;
   padding-right: 2px;
   border: #949593 solid 1px;
+  background-color: 
+  #5D99FF;
 }
 .edit_btn:hover {
   background-color: gray;
@@ -194,8 +200,13 @@ a:active {
   padding-left: 2px;
   padding-right: 2px;
   border: #949593 solid 1px;
+  background-color: #FF5192;
 }
-.post_footer {
+.post_image {
+  width: 100%;
+  padding-left: 5px;
+}
+.post_main_body {
   font-size: 22px;
   text-align: left;
   margin-left: 5px;
@@ -220,16 +231,92 @@ textarea {
   border: 2px solid #DDDDDD;
 }
 
-.follow {
+.follow_btn {
+  cursor: pointer;
+  width: 68px;
+  border: 1px solid #000;
+}
+.follow_cancellation_btn{
   cursor: pointer;
   width: 100px;
   border: 1px solid #000;
 }
 .keyword_form {
   border: 1px solid #000;
- 
+  font-size: 15px;
+  margin-left: 3px;
+  margin-bottom: 5px;
+  padding-top: 2px;
 }
-.keyword_btn{
-  margin-left: 5px;
+.comment_form {
   border: 1px solid #000;
+  font-size: 15px;
+  margin-bottom: 5px;
+  padding-top: 2px;
+}
+.keyword_btn, .comment_btn{
+  font-size: 90%;
+  background-color: #e6e6e6;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  padding-top: 2px;
+  border: 1px solid #000;
+}
+.post_comments{
+  background-color: #e6e6e6;
+  padding-left: 5px;
+}
+.comment_top{
+  display: flex;
+}
+.user_search {
+  padding-top: 5px;
+  padding-left: 154px;
+}
+
+.like {
+  font-size: 15px;
+  margin: 5px;
+  padding-top: 2px;
+  padding-right: 2px;
+  border: 1px solid #000;
+}
+.unlike {
+  font-size: 15px;
+  border: 1px solid #000;
+  margin: 5px;
+  padding-top: 2px;
+  padding-right: 2px;
+}
+.follower, .follow{
+  margin-left: 154px;
+}
+.follow_count, .follower_count {
+  padding-left: 154px;
+  margin-top: 5px;
+}
+.edit_h2 {
+  margin-left: 151px;
+  margin-bottom: 5px;
+}
+.edit_image{
+  width: 100%;
+  margin-left: 151px;
+  margin-bottom: 5px;
+}
+.image_form {
+  margin-left: 151px;
+}
+.profile_body{
+  margin-left: 153px;
+}
+.profile_image{
+  width : 100%;
+}
+.profile_form{
+  margin-top: 5px;
+}
+.email_form, .name_form{
+  border: 2px solid #DDDDDD;
+  margin-bottom: 5px;
 }
