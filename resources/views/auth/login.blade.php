@@ -14,8 +14,8 @@
         <!--</div>-->
         <div>
             <label>
-                ユーザー名:
-                <input type="text" name="name" class="login_form">
+                メールアドレス:
+                <input type="email" name="email" class="login_form">
             </label>
         </div>
         <div>
