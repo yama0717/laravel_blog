@@ -44,19 +44,19 @@
               </div>
               
               <div>
-               @if($post->isLikedBy($user))
-              <form method="post" action="{{ route('posts.toggle_like_delete', $post)}} ">
-                @csrf
-                @method('delete')
-                <input type="submit" value="いいね取り消し" class="unlike">
-              </form>
-            @else
-              <form method="post" action="{{ route('posts.toggle_like', $post) }}">
-                @csrf
-                <input type="hidden" name="post_id" value="{{ $post->id }}">
-                <input type="submit" value="いいね" class="like">
-              </form>
-            @endif
+              @if($post->isLikedBy($user))
+                <form method="post" action="{{ route('posts.toggle_like_delete', $post)}} ">
+                  @csrf
+                  @method('delete')
+                  <input type="submit" value="いいね取り消し" class="unlike">
+                </form>
+              @else
+                <form method="post" action="{{ route('posts.toggle_like', $post) }}">
+                  @csrf
+                  <input type="hidden" name="post_id" value="{{ $post->id }}">
+                  <input type="submit" value="いいね" class="like">
+                </form>
+              @endif
               </div>
               
             @if($post->user_id === Auth::user()->id)
@@ -88,7 +88,7 @@
             <span>コメント</span>
             <ul>
               @forelse($post->comments as $comment)
-                <li><a href="{{ route('users.show', $comment->user_id) }}">投稿者: {{ $comment->user->name }}   :{{ $comment->created_at }}</a></li>
+                <li>投稿者:<a href="{{ route('users.show', $comment->user_id) }}"> {{ $comment->user->name }}   </a>:{{ $comment->created_at }}</li>
                 <li>{{ $comment->body }}</li>
                 <li>
                   @if($comment->user_id === Auth::user()->id)

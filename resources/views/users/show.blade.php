@@ -71,6 +71,21 @@
                   {{ $post->title }}  :
                   {{ $post->created_at }}
                   </div>
+                  <div>
+                  @if($post->isLikedBy($myuser))
+                    <form method="post" action="{{ route('posts.toggle_like_delete', $post)}} ">
+                      @csrf
+                      @method('delete')
+                      <input type="submit" value="いいね取り消し" class="unlike">
+                    </form>
+                  @else
+                    <form method="post" action="{{ route('posts.toggle_like', $post) }}">
+                      @csrf
+                      <input type="hidden" name="post_id" value="{{ $post->id }}">
+                      <input type="submit" value="いいね" class="like">
+                    </form>
+                  @endif
+                  </div>
                 @if($post->user_id === Auth::user()->id)
                   <div class="post_menu">
                     <div class="edit_btn">
@@ -101,7 +116,7 @@
                 <ul >
                   @forelse($post->comments as $comment)
                     <li>
-                      <a href="{{ route('users.show', $comment->user_id) }}">投稿者: {{ $comment->user->name }} </a>  :{{ $comment->created_at }}
+                      投稿者:<a href="{{ route('users.show', $comment->user_id) }}"> {{ $comment->user->name }} </a>  :{{ $comment->created_at }}
                     </li>  
                     <li>
                       {{ $comment->body }}
@@ -133,7 +148,7 @@
             @endforelse
       </ul>
     @else
-      <p>ユーザーが見つかりません</p>
+      <p class="none_post">ユーザーが見つかりません</p>
     @endif
   </div>
 
