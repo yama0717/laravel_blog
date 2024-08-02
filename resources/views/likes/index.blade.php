@@ -63,7 +63,7 @@
             <span>コメント</span>
             <ul>
               @forelse($post->comments as $comment)
-                <li><a href="{{ route('users.show', $comment->user_id) }}">投稿者: {{ $comment->user->name }}   :{{ $comment->created_at }}</a></li>
+                <li>投稿者:<a href="{{ route('users.show', $comment->user_id) }}"> {{ $comment->user->name }}   </a>:{{ $comment->created_at }}</li>
                 <li>{{ $comment->body }}</li>
                 <li>
                   @if($comment->user_id === Auth::user()->id)

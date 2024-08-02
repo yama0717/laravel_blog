@@ -38,13 +38,14 @@ class FollowController extends Controller
         return back();
     }
 
-    //もう一度説明してもらう
+// $idでする場合はstoreではできない
+// storeだと$idが飛んでこない
     //   public function store($id)
     // {
     //     $user = \Auth::user();
     //     Follow::create([
     //         'user_id' => $user->id,
-    //         'follow_id' => $id->follow_id,
+    //         'follow_id' => $id,
     //     ]);
         
     //     \Session::flash('success', 'フォローしました');
