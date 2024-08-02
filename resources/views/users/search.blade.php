@@ -15,7 +15,7 @@
       </form>
     </div>
     
-    <ul>
+    <ul class="search_word">
       @forelse($users as $user)
         <li><a href="{{ route('users.show', $user) }}">{{ $user->name }}</a></li>
       @empty

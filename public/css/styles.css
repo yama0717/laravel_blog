@@ -211,6 +211,9 @@ a:active {
   text-align: left;
   margin-left: 5px;
 }
+.post_footer {
+  padding-left: 5px;
+}
 .create_form, .edit_form {
   font-size: 20px;
   margin-left: 151px;
@@ -319,4 +322,10 @@ textarea {
 .email_form, .name_form{
   border: 2px solid #DDDDDD;
   margin-bottom: 5px;
+}
+.keyword {
+  margin-left: 151px;
+}
+.search_word {
+  margin-left: 154px;
 }

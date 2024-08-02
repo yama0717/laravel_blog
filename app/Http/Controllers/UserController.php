@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Like;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserImageRequest;
 use App\Services\FileUploadService;
@@ -44,12 +45,14 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
+        $myuser = \Auth::user();
         $user  = User::find($id);
         $posts = Post::where('user_id', $id)->latest()->get();
         
         
         return view('users.show',[
             'title' => 'ユーザー詳細',
+            'myuser' => $myuser,
             'user'  => $user,
             'posts' => $posts,
         ]);
